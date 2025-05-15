@@ -5,5 +5,5 @@ variable "location" {
 
 variable "resource_group_name" {
   type    = string
-  default = "AUT-2025-demo_1"
+  default = "AUT-2025-demo_3"
 }

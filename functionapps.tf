@@ -1,5 +1,5 @@
 resource "azurerm_storage_account" "storage" {
-  name                     = "autdemostorage1234"
+  name                     = "autdemo3storage1234"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
   account_tier             = "Standard"
@@ -15,7 +15,7 @@ resource "azurerm_service_plan" "plan" {
 }
 
 resource "azurerm_linux_function_app" "function" {
-  name                       = "autdemo-functionapp1234"
+  name                       = "autdemo3-functionapp1234"
   location                   = azurerm_resource_group.rg.location
   resource_group_name        = azurerm_resource_group.rg.name
   service_plan_id            = azurerm_service_plan.plan.id
@@ -30,7 +30,7 @@ resource "azurerm_linux_function_app" "function" {
 }
 
 resource "azurerm_log_analytics_workspace" "law" {
-  name                = "autdemo-law"
+  name                = "autdemo3-law"
   location            = var.location
   resource_group_name = var.resource_group_name
   sku                 = "PerGB2018"
