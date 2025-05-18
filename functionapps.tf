@@ -1,21 +1,21 @@
 resource "azurerm_storage_account" "storage" {
-  name                     = "autdemo2storage1234"
+  name                     = var.storage_account_name
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
+  account_tier             = var.storage_account_tier
+  account_replication_type = var.storage_account_replication
 }
 
 resource "azurerm_service_plan" "plan" {
-  name                = "autdemo-function-plan"
+  name                = var.service_plan_name
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   os_type             = "Linux"
-  sku_name            = "Y1"
+  sku_name            = var.service_plan_sku
 }
 
 resource "azurerm_linux_function_app" "function" {
-  name                       = "autdemo2-functionapp1234"
+  name                       = var.function_app_name
   location                   = azurerm_resource_group.rg.location
   resource_group_name        = azurerm_resource_group.rg.name
   service_plan_id            = azurerm_service_plan.plan.id
@@ -24,16 +24,16 @@ resource "azurerm_linux_function_app" "function" {
 
   site_config {
     application_stack {
-      node_version = "18"
+      node_version = var.node_version
     }
   }
 }
 
 resource "azurerm_log_analytics_workspace" "law" {
-  name                = "autdemo2-law"
+  name                = var.log_analytics_workspace_name
   location            = var.location
   resource_group_name = var.resource_group_name
-  sku                 = "PerGB2018"
+  sku                 = var.log_analytics_workspace_sku
   retention_in_days   = 30
 }
 
@@ -72,3 +72,16 @@ resource "azurerm_monitor_diagnostic_setting" "function_diagnostics" {
     }
   }
 }
+
+# Example of using the full GitHub source for a module (uncomment and adapt as needed):
+# module "function_app" {
+#   source = "github.com/aztfmod/terraform-azurerm-caf//modules/function_app?ref=5.7.14"
+#   resource_group_name = azurerm_resource_group.rg.name
+#   location = azurerm_resource_group.rg.location
+#   name = var.function_app_name
+#   app_service_plan_id = azurerm_service_plan.plan.id
+#   storage_account_name = azurerm_storage_account.storage.name
+#   storage_account_access_key = azurerm_storage_account.storage.primary_access_key
+#   os_type = "linux"
+#   version = "~> 4.0"
+# }
