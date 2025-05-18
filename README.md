@@ -1,4 +1,4 @@
-# AUTDEMO2025-2: Azure Function App Deployment
+# AUTDEMO2025-2: Azure Function App Deployment with split tf files.
 
 This module deploys the following Azure resources using Terraform:
 - App Service Plan
