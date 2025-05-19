@@ -15,7 +15,7 @@ resource "azurerm_service_plan" "plan" {
 }
 
 resource "azurerm_linux_function_app" "function" {
-  name                       = "autdemo-functionapp1234"
+  name                       = "autdemo2-functionapp1234"
   location                   = azurerm_resource_group.rg.location
   resource_group_name        = azurerm_resource_group.rg.name
   service_plan_id            = azurerm_service_plan.plan.id
