@@ -10,6 +10,7 @@ variable "resource_group_name" {
 
 variable "storage_account_name" {
   type = string
+  default = "autdemo2storage"
 }
 
 variable "storage_account_tier" {
@@ -24,6 +25,7 @@ variable "storage_account_replication" {
 
 variable "service_plan_name" {
   type = string
+  default = "autdemo2-serviceplan"
 }
 
 variable "service_plan_sku" {

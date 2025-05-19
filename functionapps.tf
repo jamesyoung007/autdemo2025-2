@@ -1,21 +1,21 @@
 resource "azurerm_storage_account" "storage" {
-  name                     = var.storage_account_name
+  name                     = "autdemostorage1234"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
-  account_tier             = var.storage_account_tier
-  account_replication_type = var.storage_account_replication
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
 }
 
 resource "azurerm_service_plan" "plan" {
-  name                = var.service_plan_name
+  name                = "autdemo-function-plan"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   os_type             = "Linux"
-  sku_name            = var.service_plan_sku
+  sku_name            = "Y1"
 }
 
 resource "azurerm_linux_function_app" "function" {
-  name                       = var.function_app_name
+  name                       = "autdemo-functionapp1234"
   location                   = azurerm_resource_group.rg.location
   resource_group_name        = azurerm_resource_group.rg.name
   service_plan_id            = azurerm_service_plan.plan.id
@@ -24,7 +24,7 @@ resource "azurerm_linux_function_app" "function" {
 
   site_config {
     application_stack {
-      node_version = var.node_version
+      node_version = "18"
     }
   }
 }
