@@ -33,6 +33,7 @@ variable "service_plan_sku" {
 
 variable "log_analytics_workspace_name" {
   type = string
+  default = 'autdemo2-law'
 }
 
 variable "log_analytics_workspace_sku" {
